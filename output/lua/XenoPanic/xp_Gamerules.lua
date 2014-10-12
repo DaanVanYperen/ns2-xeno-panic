@@ -175,8 +175,47 @@ if (Server) then
     
         return numPlayers
     end
+
+local function TeamSwap(player, className, teamNumber, extraValues)
+        
+        // Don't allow to use these commands if you're in the RR
+        if player:GetTeamNumber() == kTeam1Index or player:GetTeamNumber() == kTeam2Index then
+        
+            // Switch teams if necessary
+            if player:GetTeamNumber() ~= teamNumber then
+                    // Remember position and team for calling player for debugging
+                    local playerOrigin = player:GetOrigin()
+                    local playerViewAngles = player:GetViewAngles()
+                    
+                    local newTeamNumber = kTeam1Index
+                    if player:GetTeamNumber() == kTeam1Index then
+                        newTeamNumber = kTeam2Index
+                    end
+                    
+                    local success, newPlayer = GetGamerules():JoinTeam(player, kTeamReadyRoom)
+                    success, newPlayer = GetGamerules():JoinTeam(newPlayer, newTeamNumber)
+                    
+                    newPlayer:SetOrigin(playerOrigin)
+                    newPlayer:SetViewAngles(playerViewAngles)
+            end
+            
+         // Respawn shenanigans
+            local newPlayer = player:Replace(className, player:GetTeamNumber(), nil, nil, extraValues)
+            // Always disable 3rd person
+            newPlayer:SetDesiredCameraDistance(0)
+            
+       end
+end
    
     function NS2Gamerules:CheckGameEnd()
+    
+        // respawn dead marines as skulks.
+        if self:GetGameStarted() then
+            local playerToSwap = self.team1:GetOldestQueuedPlayer();
+            if playerToSwap ~= nil then
+                  TeamSwap(playerToSwap, "skulk", kTeam2Index)
+            end
+        end 
     
         if self:GetGameStarted() and self.timeGameEnded == nil and not self.preventGameEnd then
                 

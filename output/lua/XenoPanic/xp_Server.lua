@@ -4,6 +4,7 @@ Script.Load("lua/XenoPanic/xp_Marine_Server.lua")
 // Misc
 /*Script.Load("lua/SkulksWithShotguns/sws_NS2ConsoleCommands_Server.lua") */
 Script.Load("lua/XenoPanic/xp_ItemSpawn.lua") 
+Script.Load("lua/XenoPanic/xp_PlayingTeam.lua")
 
 // Custom entity prepping for our mod.
 
