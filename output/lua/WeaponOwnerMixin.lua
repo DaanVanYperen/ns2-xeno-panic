@@ -401,12 +401,12 @@ function WeaponOwnerMixin:AddWeapon(weapon, setActive)
     local hasWeapon = self:GetWeaponInHUDSlot(weapon:GetHUDSlot())
     if hasWeapon then
     
-//        local success = self:Drop(hasWeapon, true, true)
-        //assert(success == true)
+        local success = self:Drop(hasWeapon, true, true)
+        assert(success == true)
         
     end
     
-    //assert(self:GetWeaponInHUDSlot(weapon:GetHUDSlot()) == nil)
+    assert(self:GetWeaponInHUDSlot(weapon:GetHUDSlot()) == nil)
 
     weapon:SetParent(self)
     weapon:SetOrigin(Vector.origin)
