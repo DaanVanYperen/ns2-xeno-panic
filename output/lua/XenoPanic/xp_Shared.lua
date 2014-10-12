@@ -6,6 +6,7 @@ Script.Load("lua/XenoPanic/xp_EventMessenger.lua")
 
 // Entity Overrides
 Script.Load("lua/XenoPanic/xp_Gamerules.lua")
+Script.Load("lua/XenoPanic/xp_PickupSpawning.lua")
 
 
 /*
