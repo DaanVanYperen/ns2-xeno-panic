@@ -3,11 +3,18 @@
 
 if (Server) then            
 
+    local kEnoughAlienCheckInterval = 10
     local kGameEndCheckInterval = 0.75
     local kXenoPanicTimeLimit = 60*20
 
     function NS2Gamerules:GetCanJoinTeamNumber(teamNumber)
-       return true; // (teamNumber == self.team2:GetTeamNumber())
+        if self:GetGameStarted() then
+            // after game started you can only join aliens.
+            return (teamNumber == self.team2:GetTeamNumber())
+        else
+            // during pre-game you can only join marines.
+            return (teamNumber == self.team1:GetTeamNumber())
+        end
     end
        
     local kPauseToSocializeBeforeMapcycle = 30
@@ -54,20 +61,59 @@ if (Server) then
         
     end    
     
+    
+    function NS2Gamerules:RandomlyConvertMarine()
+    
+        for playerIndex, player in ipairs(self.team1:GetPlayers()) do
+
+            if HasMixin(player, "Live") and player:GetCanDie() then
+                player:Kill(nil, nil, player:GetOrigin())
+                return
+            end
+        end
+         
+    end
+    
+    function NS2Gamerules:EnsureEnoughAliens()
+
+         local marineCount = self.team1:GetNumPlayers()
+         local alienCount = self.team2:GetNumPlayers()
+         
+         local minimumAlienCount = 1 + (marineCount / 8)
+         
+         if ( alienCount < minimumAlienCount ) then
+             self:RandomlyConvertMarine()
+         end
+         
+    end
+    
     function NS2Gamerules:CheckGameStart()
     
         if (self:GetGameState() == kGameState.NotStarted) or (self:GetGameState() == kGameState.PreGame) then
-        
+
             // Start game when we have /any/ players in the game.
             local playerCount = self.team1:GetNumPlayers() + self.team2:GetNumPlayers()
             
-            if  (playerCount >= 3) then
+            if (playerCount >= 3) then
+            
                 if self:GetGameState() == kGameState.NotStarted then
-                    self:SetGameState(kGameState.PreGame)
-                    self.score = 0
-                    Shared:ShotgunMessage("Game started!")
+                
+                    // 10 second cooldown.
+                    if ( self.timeUntilStart == nil ) then
+                      Shared:ShotgunMessage("Game will start in 15 seconds! Join up quickly!")
+                      self.timeUntilStart = Shared.GetTime() + 15 
+                    end 
+            
+                    // ready to begin!
+                    if ( Shared.GetTime() >= self.timeUntilStart ) then
+                        self.timeUntilStart = nil
+                        self:SetGameState(kGameState.PreGame)
+                        self.score = 0
+                        Shared:ShotgunMessage("Game started!")
+                    end
                 end
             else
+                self.timeUntilStart = nil
                 if (self:GetGameState() == kGameState.PreGame) then
                     self:SetGameState(kGameState.NotStarted)
                     Shared:ShotgunMessage("Round aborted!")
@@ -110,6 +156,8 @@ if (Server) then
                 self:SetGameState(kGameState.Started)
                 self.sponitor:OnStartMatch()
                 self.playerRanking:StartGame()
+                
+                self.timeLastEnoughAliensCheck = Shared.GetTime()
         end
         
     end
@@ -138,7 +186,7 @@ if (Server) then
                 Shared:ShotgunMessage("Aliens win!")
                 self:EndGame(self.team2)
             end
-            
+           
             // game is taking too long.
             if self.timeLastGameEndCheck == nil or (Shared.GetTime() > self.timeLastGameEndCheck + kGameEndCheckInterval) then
             
@@ -148,6 +196,12 @@ if (Server) then
                 end
 
                 self.timeLastGameEndCheck = Shared.GetTime()                
+            end
+            
+            // spawn some aliens if needed.
+            if self.timeLastEnoughAliensCheck == nil or (Shared.GetTime() > self.timeLastEnoughAliensCheck + kEnoughAlienCheckInterval) then
+                self:EnsureEnoughAliens()
+                self.timeLastEnoughAliensCheck = Shared.GetTime()   
             end
             
         end
