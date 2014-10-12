@@ -8,6 +8,8 @@ Script.Load("lua/XenoPanic/xp_EventMessenger.lua")
 Script.Load("lua/XenoPanic/xp_Gamerules.lua")
 Script.Load("lua/XenoPanic/xp_PickupSpawning.lua")
 
+// New Entities
+Script.Load("lua/XenoPanic/xp_ItemSpawn.lua")
 
 /*
 // Constants

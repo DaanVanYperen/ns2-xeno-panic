@@ -219,30 +219,18 @@ if (Server) then
             scriptActor:OnMapPostLoad()
         end
         
-        /*
         // fall back on resource points as spawns if none exist for the shadow team.
-        if table.maxn(Server.shadowSpawnList) <= 0 then
-            Shared:ShotgunWarning("Map lacks shadow_spawn entities on the map! Falling back on ResourcePoints.")        
+        if table.maxn(Server.itemSpawnList) <= 0 then
+            Shared:ShotgunWarning("Map lacks item_spawn entities on the map! Falling back on ResourcePoints.")        
             for index, entity in ientitylist(Shared.GetEntitiesWithClassname("ResourcePoint")) do
-                local spawn = ShadowSpawn()
+                local spawn = ItemSpawn()
                 spawn:OnCreate()
                 spawn:SetAngles(entity:GetAngles())
                 spawn:SetOrigin(entity:GetOrigin())
-                table.insert(Server.shadowSpawnList, spawn)
+                table.insert(Server.itemSpawnList, spawn)
             end     
         end
         
-        // fall back on resource points as spawns if none exist for the vanilla team.
-        if table.maxn(Server.vanillaSpawnList) <= 0 then
-            Shared:ShotgunWarning("Map lacks vanilla_spawn entitities on the map! Falling back on ResourcePoints.")
-            for index, entity in ientitylist(Shared.GetEntitiesWithClassname("ResourcePoint")) do
-                local spawn = VanillaSpawn()
-                spawn:OnCreate()
-                spawn:SetAngles(entity:GetAngles())
-                spawn:SetOrigin(entity:GetOrigin())
-                table.insert(Server.vanillaSpawnList, spawn)
-            end     
-        end */
    end
 
     // disable these methods in OnUpdate, we don't want them to trigger.

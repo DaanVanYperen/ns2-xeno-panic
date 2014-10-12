@@ -1,6 +1,5 @@
 if Server then
 
-
 local function SpawnWeapons(self, techPoint)
     
     local weaponTypes = { 
@@ -28,13 +27,12 @@ local function SpawnWeapons(self, techPoint)
             GasGrenadeThrower.kMapName
     }
     
-    for index, current in ientitylist(Shared.GetEntitiesWithClassname("ResourcePoint")) do
+    for i = 1, #Server.itemSpawnList do
+         local current = Server.itemSpawnList[i]
          // place some random weapons.
-        for i = 1, 40 do        
-            local spawnOrigin = current:GetOrigin() + Vector(math.random() * 4 - 2, 0.5, math.random() * 4 - 2)         
-            local randomWeapon = weaponTypes[math.random(#weaponTypes)]
-            newEnt = CreateEntity( randomWeapon, spawnOrigin, self:GetTeamNumber() )
-        end
+         local spawnOrigin = current:GetOrigin()        
+         local randomWeapon = weaponTypes[math.random(#weaponTypes)]
+         newEnt = CreateEntity( randomWeapon, spawnOrigin, self:GetTeamNumber() )
     end
 end
 
