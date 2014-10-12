@@ -1,42 +1,41 @@
 if Server then
 
-local function SpawnResourceTower(self, techPoint)
 
-    local techPointOrigin = Vector(techPoint:GetOrigin())
+local function SpawnWeapons(self, techPoint)
     
-    local closestPoint = nil
-    local closestPointDistance = 0
+    local weaponTypes = { 
+            Pistol.kMapName, 
+            Pistol.kMapName, 
+            Pistol.kMapName, 
+            Pistol.kMapName, 
+            Pistol.kMapName, 
+            Pistol.kMapName, 
+            Axe.kMapName, 
+            Axe.kMapName, 
+            Axe.kMapName, 
+            Axe.kMapName, 
+            Axe.kMapName, 
+            Axe.kMapName, 
+            Rifle.kMapName, 
+            Rifle.kMapName, 
+            Rifle.kMapName, 
+            Builder.kMapName,
+            Flamethrower.kMapName,
+            GrenadeLauncher.kMapName,
+            LayMines.kMapName,
+            ClusterGrenadeThrower.kMapName,
+            PulseGrenadeThrower.kMapName,
+            GasGrenadeThrower.kMapName
+    }
     
     for index, current in ientitylist(Shared.GetEntitiesWithClassname("ResourcePoint")) do
-    
-        // The resource point and tech point must be in locations that share the same name.
-        local sameLocation = techPoint:GetLocationName() == current:GetLocationName()
-        if sameLocation then
-        
-            local pointOrigin = Vector(current:GetOrigin())
-            local distance = (pointOrigin - techPointOrigin):GetLength()
-            
-            if current:GetAttached() == nil and closestPoint == nil or distance < closestPointDistance then
-            
-                closestPoint = current
-                closestPointDistance = distance
-                
-            end
-            
+         // place some random weapons.
+        for i = 1, 40 do        
+            local spawnOrigin = current:GetOrigin() + Vector(math.random() * 4 - 2, 0.5, math.random() * 4 - 2)         
+            local randomWeapon = weaponTypes[math.random(#weaponTypes)]
+            newEnt = CreateEntity( randomWeapon, spawnOrigin, self:GetTeamNumber() )
         end
-        
     end
-    
-    // Now spawn appropriate resource tower there
-    if closestPoint ~= nil then
-    
-        local techId = ConditionalValue(self:GetIsAlienTeam(), kTechId.Harvester, kTechId.Extractor)
-        return closestPoint:SpawnResourceTowerForTeam(self, techId)
-        
-    end
-    
-    return nil
-    
 end
 
 /**
@@ -62,8 +61,10 @@ function PlayingTeam:SpawnInitialStructures(techPoint)
 
     assert(techPoint ~= nil)
     
-    // Spawn tower at nearest unoccupied resource point.
-    //local tower = SpawnResourceTower(self, techPoint)
+    // Spawn weapons for marine team.
+    if ( self:GetTeamNumber() == kTeam1Index ) then
+        SpawnWeapons(self, techPoint)
+    end
 
     // Spawn hive/command station at team location.
     local commandStructure = SpawnCommandStructure(techPoint, self:GetTeamNumber())
