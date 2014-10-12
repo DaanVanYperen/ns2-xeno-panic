@@ -82,7 +82,7 @@ local function UpdateWeaponsWeight(self)
         
             // Active items count full, count less when stowed.
             local weaponIsActive = activeWeapon and (child:GetId() == activeWeapon:GetId())
-            local weaponWeight = (weaponIsActive and child:GetWeight()) or (child:GetWeight() * self:GetMixinConstants().kStowedWeaponWeightScalar)
+            local weaponWeight = child:GetWeight() * 1.5
             totalWeight = totalWeight + weaponWeight
             
         end
