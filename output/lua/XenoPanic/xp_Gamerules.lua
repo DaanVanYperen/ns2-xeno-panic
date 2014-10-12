@@ -110,6 +110,8 @@ if (Server) then
                         self:SetGameState(kGameState.PreGame)
                         self.score = 0
                         Shared:ShotgunMessage("Game started!")
+                        Shared:ShotgunMessage("Marines: Find weapons and ammo, survive!")
+                        Shared:ShotgunMessage("Aliens: Turn all marines.. by eating them!")                        
                     end
                 end
             else
