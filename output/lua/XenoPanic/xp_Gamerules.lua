@@ -73,7 +73,7 @@ if (Server) then
         end
          
     end
-    
+        
     function NS2Gamerules:EnsureEnoughAliens()
 
          local marineCount = self.team1:GetNumPlayers()
