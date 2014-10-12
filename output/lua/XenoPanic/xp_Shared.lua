@@ -1,4 +1,13 @@
 
+// Utilities
+Script.Load("lua/XenoPanic/xp_Locale.lua")
+Script.Load("lua/XenoPanic/xp_Utility.lua")
+Script.Load("lua/XenoPanic/xp_EventMessenger.lua")
+
+// Entity Overrides
+Script.Load("lua/XenoPanic/xp_Gamerules.lua")
+
+
 /*
 // Constants
 Script.Load("lua/SkulksWithShotguns/sws_Globals.lua")
@@ -27,7 +36,7 @@ Script.Load("lua/SkulksWithShotguns/sws_ExplosiveTraumaMixin.lua")
 // Entity overrides.
 Script.Load("lua/SkulksWithShotguns/sws_AlienSpectator.lua")
 Script.Load("lua/SkulksWithShotguns/sws_AlienTeam.lua")
-Script.Load("lua/SkulksWithShotguns/sws_Gamerules.lua")
+script.Load("lua/SkulksWithShotguns/sws_Gamerules.lua")
 Script.Load("lua/SkulksWithShotguns/sws_MarineTeam.lua")
 Script.Load("lua/SkulksWithShotguns/sws_PlayingTeam.lua")
 Script.Load("lua/SkulksWithShotguns/sws_MapBlip.lua")

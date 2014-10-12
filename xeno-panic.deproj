@@ -10,6 +10,15 @@
     <filename>output\lua\XenoPanic\xp_Client.lua</filename>
   </file>
   <file>
+    <filename>output\lua\XenoPanic\xp_Gamerules.lua</filename>
+  </file>
+  <file>
+    <filename>output\lua\XenoPanic\xp_Locale.lua</filename>
+  </file>
+  <file>
+    <filename>output\lua\XenoPanic\xp_Marine_Server.lua</filename>
+  </file>
+  <file>
     <filename>output\lua\XenoPanic\xp_Predict.lua</filename>
   </file>
   <file>
@@ -17,5 +26,11 @@
   </file>
   <file>
     <filename>output\lua\XenoPanic\xp_Shared.lua</filename>
+  </file>
+  <file>
+    <filename>output\lua\XenoPanic\xp_TeamSwap.lua</filename>
+  </file>
+  <file>
+    <filename>output\lua\XenoPanic\xp_Utility.lua</filename>
   </file>
 </project>
