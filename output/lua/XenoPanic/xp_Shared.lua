@@ -1,6 +1,4 @@
 
-Shared.Message('Xeno Panic SHARED MODULE')
-
 /*
 // Constants
 Script.Load("lua/SkulksWithShotguns/sws_Globals.lua")
