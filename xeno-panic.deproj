@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+  <file>
+    <filename>output\game_setup.xml</filename>
+  </file>
+  <file>
+    <filename>output\lua\entry\xp.entry</filename>
+  </file>
+  <file>
+    <filename>output\lua\XenoPanic\xp_Client.lua</filename>
+  </file>
+  <file>
+    <filename>output\lua\XenoPanic\xp_Predict.lua</filename>
+  </file>
+  <file>
+    <filename>output\lua\XenoPanic\xp_Server.lua</filename>
+  </file>
+  <file>
+    <filename>output\lua\XenoPanic\xp_Shared.lua</filename>
+  </file>
+</project>
