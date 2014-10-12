@@ -1,5 +1,6 @@
 
 kEventMessageTypes = enum({ 
+    'SuddenlyAlien',
     'MarineStartGame',
     'AlienStartGame',
  })
@@ -23,6 +24,7 @@ local actorStringGen = function(clientIndex, messageString)
     return string.format(Locale.ResolveString(messageString), name) 
 end
 
+kEventMessages[kEventMessageTypes.SuddenlyAlien] = { text = function(data) return actorStringGen(data, "SUDDENLY_ALIEN") end }
 kEventMessages[kEventMessageTypes.MarineStartGame] = { text = function(data) return Locale.ResolveString("MARINE_START_GAME") end }
 kEventMessages[kEventMessageTypes.AlienStartGame] = { text = function(data) return Locale.ResolveString("ALIEN_START_GAME") end }
 

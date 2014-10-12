@@ -8,6 +8,9 @@ kCustomLocaleMessages = {
     ALIEN_START_GAME = 'Objective: Infect all marines!',
     ALIEN_VICTORY = "Team Xeno Wins!",
     ALIEN_DEFEAT = "Team Xeno loses",    
+
+    // %s=Playername
+    SUDDENLY_ALIEN = "A skulk bursts from %s's chest!",    
 }
 
 if Locale then
