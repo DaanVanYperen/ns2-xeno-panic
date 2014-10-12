@@ -30,7 +30,7 @@ local function SpawnWeapons(self, techPoint)
     for i = 1, #Server.itemSpawnList do
          local current = Server.itemSpawnList[i]
          // place some random weapons.
-         local spawnOrigin = current:GetOrigin()        
+         local spawnOrigin = current:GetOrigin() + Vector(0, .2, 0)
          local randomWeapon = weaponTypes[math.random(#weaponTypes)]
          newEnt = CreateEntity( randomWeapon, spawnOrigin, self:GetTeamNumber() )
     end
