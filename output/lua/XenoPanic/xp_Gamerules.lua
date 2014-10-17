@@ -3,10 +3,19 @@
 
 if (Server) then            
 
-    local kEnoughAlienCheckInterval = 10
+    local kEnoughAlienCheckInterval = 0.5
     local kGameEndCheckInterval = 0.75
     local kXenoPanicTimeLimit = 60*20
-
+    
+    function NS2Gamerules:GetWhitey()
+        for playerIndex, player in ipairs(self.team2:GetPlayers()) do
+            if HasMixin(player, "Live") and player:GetCanDie() and player:GetVariant() ==  kSkulkVariant.shadow then
+                return player
+            end
+        end
+        return nil
+    end
+          
     function NS2Gamerules:GetCanJoinTeamNumber(teamNumber)
         if self:GetGameStarted() then
             // after game started you can only join aliens.
@@ -61,13 +70,46 @@ if (Server) then
         
     end    
     
+
+function NS2Gamerules:TeamSwap(player, className, teamNumber, extraValues)
+        
+        // Don't allow to use these commands if you're in the RR
+        if player:GetTeamNumber() == kTeam1Index or player:GetTeamNumber() == kTeam2Index then
+
+            // Switch teams if necessary
+            if player:GetTeamNumber() ~= teamNumber then
+                    // Remember position and team for calling player for debugging
+                    local playerOrigin = player:GetOrigin()
+                    local playerViewAngles = player:GetViewAngles()
+                    
+                    local newTeamNumber = kTeam1Index
+                    if player:GetTeamNumber() == kTeam1Index then
+                        newTeamNumber = kTeam2Index
+                    end
+                    
+                    local success, newPlayer = GetGamerules():JoinTeam(player, kTeamReadyRoom)
+                    success, newPlayer = GetGamerules():JoinTeam(newPlayer, newTeamNumber)
+                    
+                    newPlayer:SetOrigin(playerOrigin)
+                    newPlayer:SetViewAngles(playerViewAngles)
+            end
+            
+         // Respawn shenanigans
+            local newPlayer = player:Replace(className, player:GetTeamNumber(), nil, nil, extraValues)
+            
+            // Always disable 3rd person
+            newPlayer:SetDesiredCameraDistance(0)
+            
+       end
+end    
     
     function NS2Gamerules:RandomlyConvertMarine()
     
         for playerIndex, player in ipairs(self.team1:GetPlayers()) do
 
             if HasMixin(player, "Live") and player:GetCanDie() then
-                player:Kill(nil, nil, player:GetOrigin())
+                self:TeamSwap(player, "skulk", kTeam2Index)
+//                player:Kill(nil, nil, player:GetOrigin())
                 return
             end
         end
@@ -101,7 +143,7 @@ if (Server) then
                     // 10 second cooldown.
                     if ( self.timeUntilStart == nil ) then
                       Shared:ShotgunMessage("Game will start in 15 seconds! Join up quickly!")
-                      self.timeUntilStart = Shared.GetTime() + 15 
+                      self.timeUntilStart = Shared.GetTime() + 3 //15 
                     end 
             
                     // ready to begin!
@@ -177,45 +219,14 @@ if (Server) then
     
         return numPlayers
     end
-
-local function TeamSwap(player, className, teamNumber, extraValues)
-        
-        // Don't allow to use these commands if you're in the RR
-        if player:GetTeamNumber() == kTeam1Index or player:GetTeamNumber() == kTeam2Index then
-        
-            // Switch teams if necessary
-            if player:GetTeamNumber() ~= teamNumber then
-                    // Remember position and team for calling player for debugging
-                    local playerOrigin = player:GetOrigin()
-                    local playerViewAngles = player:GetViewAngles()
-                    
-                    local newTeamNumber = kTeam1Index
-                    if player:GetTeamNumber() == kTeam1Index then
-                        newTeamNumber = kTeam2Index
-                    end
-                    
-                    local success, newPlayer = GetGamerules():JoinTeam(player, kTeamReadyRoom)
-                    success, newPlayer = GetGamerules():JoinTeam(newPlayer, newTeamNumber)
-                    
-                    newPlayer:SetOrigin(playerOrigin)
-                    newPlayer:SetViewAngles(playerViewAngles)
-            end
-            
-         // Respawn shenanigans
-            local newPlayer = player:Replace(className, player:GetTeamNumber(), nil, nil, extraValues)
-            // Always disable 3rd person
-            newPlayer:SetDesiredCameraDistance(0)
-            
-       end
-end
    
     function NS2Gamerules:CheckGameEnd()
     
         // respawn dead marines as skulks.
         if self:GetGameStarted() then
             local playerToSwap = self.team1:GetOldestQueuedPlayer();
-            if playerToSwap ~= nil then
-                  TeamSwap(playerToSwap, "skulk", kTeam2Index)
+            if playerToSwap ~= nil then 
+                  self:TeamSwap(playerToSwap, "skulk", kTeam2Index)
             end
         end 
     
