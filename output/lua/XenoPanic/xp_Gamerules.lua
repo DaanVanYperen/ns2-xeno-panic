@@ -140,6 +140,19 @@ end
         end
     end
     
+    function NS2Gamerules:BreakPowernodes()
+        for index, powerPoint in ientitylist(Shared.GetEntitiesWithClassname("PowerPoint")) do            
+           if powerPoint:GetPowerState() == PowerPoint.kPowerState.unsocketed then
+                powerPoint:SocketPowerNode()
+                powerPoint:SetConstructionComplete()
+           end
+           if ( math.random(100) <= 66 ) then
+                powerPoint:Kill()
+           end
+        end
+    end
+    
+    
     function NS2Gamerules:CheckGameStart()
     
         if (self:GetGameState() == kGameState.NotStarted) or (self:GetGameState() == kGameState.PreGame) then
@@ -155,6 +168,7 @@ end
                     if ( self.timeUntilStart == nil ) then
                     
                       -- auto join all players
+                      self:BreakPowernodes()
                       Shared:ShotgunMessage("Game will start in 15 seconds! Join up quickly!")
                       Shared:ShotgunMessage("One of you is infected! Trust no one...")
                       self.timeUntilStart = Shared.GetTime() + 15 
