@@ -45,6 +45,18 @@ function PanicMixin:OnUpdate(deltaTime)
     SharedUpdate(self, deltaTime)
 end
 
+
+function PanicMixin:PanicDropAllWeapons()
+
+    local weaponSpawnCoords = self:GetAttachPointCoords(Weapon.kHumanAttachPoint)
+    local weaponList = self:GetHUDOrderedWeaponList()
+    for w = 1, #weaponList do
+        local weapon = weaponList[w]
+        self:Drop(weapon, true, true)
+    end
+    
+end
+
 function PanicMixin:TriggerPanic()
 
     local duration = 30
@@ -56,7 +68,7 @@ function PanicMixin:TriggerPanic()
         -- cannot pickup weapons while under panic effects.
         self.timeOfLastPickUpWeapon = Shared.GetTime() + CatalystMixin.kDefaultDuration
 
-        self:DropAllWeapons()
+        self:PanicDropAllWeapons()
         StartSoundEffectAtOrigin(CatPack.kPickupSound, self:GetOrigin())
         self:ApplyCatPack()
     end

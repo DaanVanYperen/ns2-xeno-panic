@@ -91,27 +91,3 @@ function Marine:HandleButtons(input)
     end
     
 end
-
-function Weapon:Dropped(prevOwner)
-    
-    local slot = self:GetHUDSlot()
-
-    self.prevOwnerId = prevOwner:GetId()
-    
-    self:SetWeaponWorldState(true)
-    
-    // when dropped weapons always need a physic model
-    if not self.physicsModel then
-        self.physicsModel = Shared.CreatePhysicsModel(self.physicsModelIndex, true, self:GetCoords(), self)
-    end
-    
-    if self.physicsModel then
-    
-        local viewCoords = prevOwner:GetViewCoords()
-        local impulse = 0.1
-        self.physicsModel:AddImpulse(self:GetOrigin(), (viewCoords.zAxis * impulse))
-        self.physicsModel:SetAngularVelocity(Vector(5,0,0))
-        
-    end
-    
-end
