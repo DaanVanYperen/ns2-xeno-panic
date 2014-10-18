@@ -143,7 +143,8 @@ end
                     // 10 second cooldown.
                     if ( self.timeUntilStart == nil ) then
                       Shared:ShotgunMessage("Game will start in 15 seconds! Join up quickly!")
-                      self.timeUntilStart = Shared.GetTime() + 3 //15 
+                      Shared:ShotgunMessage("One of you is infected! Trust no one...")
+                      self.timeUntilStart = Shared.GetTime() + 15 
                     end 
             
                     // ready to begin!

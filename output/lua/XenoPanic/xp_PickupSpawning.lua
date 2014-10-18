@@ -75,4 +75,9 @@ function PlayingTeam:SpawnInitialStructures(techPoint)
     
 end
 
+function MarineTeam:SpawnInitialStructures(techPoint)
+    local tower, commandStation = PlayingTeam.SpawnInitialStructures(self, techPoint)
+    return tower, commandStation
+end
+
 end
