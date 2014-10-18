@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
   <file>
+    <filename>output\lua\PanicMixin.lua</filename>
+  </file>
+  <file>
+    <filename>output\lua\PlayingTeam.lua</filename>
+  </file>
+  <file>
     <filename>output\lua\SkulkVariantMixin.lua</filename>
   </file>
   <file>
@@ -47,6 +53,9 @@
   </file>
   <file>
     <filename>output\lua\XenoPanic\xp_Shared.lua</filename>
+  </file>
+  <file>
+    <filename>output\lua\XenoPanic\xp_Skulk_Server.lua</filename>
   </file>
   <file>
     <filename>output\lua\XenoPanic\xp_TeamSwap.lua</filename>

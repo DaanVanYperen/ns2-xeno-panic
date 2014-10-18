@@ -1,3 +1,5 @@
+kSfxPanic = PrecacheAsset("sound/xp.fev/common/panic")
+
 PanicMixin = CreateMixin(PanicMixin)
 PanicMixin.type = "Panic"
 
@@ -57,6 +59,10 @@ function PanicMixin:PanicDropAllWeapons()
     
 end
 
+local function PlaySound( self, soundEffect )
+    Shared.PlaySound(self, soundEffect)
+end
+
 function PanicMixin:TriggerPanic()
 
     local duration = 30
@@ -71,6 +77,8 @@ function PanicMixin:TriggerPanic()
         self:PanicDropAllWeapons()
         StartSoundEffectAtOrigin(CatPack.kPickupSound, self:GetOrigin())
         self:ApplyCatPack()
+        
+        StartSoundEffectAtOrigin(kSfxPanic, self:GetOrigin())
     end
     
 end
