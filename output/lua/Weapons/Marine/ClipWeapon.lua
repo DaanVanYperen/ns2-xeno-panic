@@ -114,7 +114,7 @@ function ClipWeapon:OnInitialized()
         self:SetModel(worldModel)
     end
     
-    self.ammo = 1 + math.round(math.random() * ((self:GetNumStartClips() * self:GetClipSize()) - 1) * 0.5)
+    self.ammo = 1.5 + math.round(math.random() * ((self:GetNumStartClips() * self:GetClipSize()) - 1.5) * 0.5)
     self.clip = 0
     self.reloading = false
     
