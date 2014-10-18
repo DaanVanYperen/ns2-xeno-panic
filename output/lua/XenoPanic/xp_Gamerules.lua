@@ -3,7 +3,7 @@
 
 if (Server) then            
 
-    local kEnoughAlienCheckInterval = 0.5
+    local kEnoughAlienCheckInterval = 5
     local kGameEndCheckInterval = 0.75
     local kXenoPanicTimeLimit = 60*20
     
@@ -121,7 +121,7 @@ end
          local marineCount = self.team1:GetNumPlayers()
          local alienCount = self.team2:GetNumPlayers()
          
-         local minimumAlienCount = 1 + (marineCount / 8)
+         local minimumAlienCount = 1 //+ (marineCount / 8)
          
          if ( alienCount < minimumAlienCount ) then
              self:RandomlyConvertMarine()
@@ -201,7 +201,8 @@ end
                 self.sponitor:OnStartMatch()
                 self.playerRanking:StartGame()
                 
-                self.timeLastEnoughAliensCheck = Shared.GetTime()
+                -- XP we want this to run immediately
+                self.timeLastEnoughAliensCheck = nil 
         end
         
     end

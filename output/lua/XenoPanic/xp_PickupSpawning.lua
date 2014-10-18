@@ -33,6 +33,14 @@ local function SpawnWeapons(self, techPoint)
          local spawnOrigin = current:GetOrigin() + Vector(0, .2, 0)
          local randomWeapon = weaponTypes[math.random(#weaponTypes)]
          newEnt = CreateEntity( randomWeapon, spawnOrigin, self:GetTeamNumber() )
+            
+         if newEnt ~= nil then 
+            newEnt:SetWeaponWorldState(true, true)
+            -- give weapons a physics model so they can plop down.
+            if not newEnt.physicsModel then
+                newEnt.physicsModel = Shared.CreatePhysicsModel(newEnt.physicsModelIndex, true, newEnt:GetCoords(), newEnt)
+            end
+         end    
     end
 end
 
