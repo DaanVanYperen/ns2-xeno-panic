@@ -114,3 +114,37 @@ function DropPack:OnInitialized()
     end
 
 end
+
+
+
+function Weapon:Dropped(prevOwner)
+    
+    local slot = self:GetHUDSlot()
+
+    self.prevOwnerId = prevOwner:GetId()
+    
+    -- XP START 
+    -- prevent weapons from despawning
+    self:SetWeaponWorldState(true,true)
+    -- XP END
+    
+    // when dropped weapons always need a physic model
+    if not self.physicsModel then
+        self.physicsModel = Shared.CreatePhysicsModel(self.physicsModelIndex, true, self:GetCoords(), self)
+    end
+    
+    if self.physicsModel then
+    
+        local viewCoords = prevOwner:GetViewCoords()
+        local impulse = 0.075
+        if slot == 2 then
+            impulse = 0.0075
+        elseif slot == 3 then
+            impulse = 0.005
+        end
+        self.physicsModel:AddImpulse(self:GetOrigin(), (viewCoords.zAxis * impulse))
+        self.physicsModel:SetAngularVelocity(Vector(5,0,0))
+        
+    end
+    
+end
