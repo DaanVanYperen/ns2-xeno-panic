@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
   <file>
+    <filename>output\lua\SkulkVariantMixin.lua</filename>
+  </file>
+  <file>
+    <filename>output\lua\TeamMixin.lua</filename>
+  </file>
+  <file>
+    <filename>output\lua\WeaponOwnerMixin.lua</filename>
+  </file>
+  <file>
     <filename>output\game_setup.xml</filename>
   </file>
   <file>
@@ -10,13 +19,25 @@
     <filename>output\lua\XenoPanic\xp_Client.lua</filename>
   </file>
   <file>
+    <filename>output\lua\XenoPanic\xp_EventMessenger.lua</filename>
+  </file>
+  <file>
     <filename>output\lua\XenoPanic\xp_Gamerules.lua</filename>
+  </file>
+  <file>
+    <filename>output\lua\XenoPanic\xp_ItemSpawn.lua</filename>
   </file>
   <file>
     <filename>output\lua\XenoPanic\xp_Locale.lua</filename>
   </file>
   <file>
     <filename>output\lua\XenoPanic\xp_Marine_Server.lua</filename>
+  </file>
+  <file>
+    <filename>output\lua\XenoPanic\xp_PickupSpawning.lua</filename>
+  </file>
+  <file>
+    <filename>output\lua\XenoPanic\xp_PlayingTeam.lua</filename>
   </file>
   <file>
     <filename>output\lua\XenoPanic\xp_Predict.lua</filename>
@@ -32,5 +53,8 @@
   </file>
   <file>
     <filename>output\lua\XenoPanic\xp_Utility.lua</filename>
+  </file>
+  <file>
+    <filename>output\lua\XenoPanic\xp_XpGameInfo.lua</filename>
   </file>
 </project>

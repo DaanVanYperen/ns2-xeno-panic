@@ -1,5 +1,6 @@
 
 Script.Load("lua/XenoPanic/xp_Marine_Server.lua")
+Script.Load("lua/XenoPanic/xp_Skulk_Server.lua")
 
 // Misc
 /*Script.Load("lua/SkulksWithShotguns/sws_NS2ConsoleCommands_Server.lua") */

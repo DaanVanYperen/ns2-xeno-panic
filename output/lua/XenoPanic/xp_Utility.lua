@@ -68,3 +68,18 @@ function GetLocalFunction(originalFunction, localFunctionName)
     return nil
     
 end
+
+// force default level for shell
+function GetShellLevel(teamNumber)
+    return 2
+end
+
+// force default level for spur
+function GetSpurLevel(teamNumber)
+    return 2
+end
+
+// force default level for veil
+function GetVeilLevel(teamNumber) 
+    return 2
+end
