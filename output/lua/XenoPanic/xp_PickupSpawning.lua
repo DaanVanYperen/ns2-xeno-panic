@@ -95,3 +95,22 @@ function MarineTeam:SpawnInitialStructures(techPoint)
 end
 
 end
+
+
+
+function DropPack:OnInitialized()
+
+    ScriptActor.OnInitialized(self)
+
+    if Server then
+        -- XP START
+        -- Disable default timeout for medpacks and the like.
+        self.pickupRange = 1
+        -- XP END
+         self:SetAngles(Angles(0, math.random() * math.pi * 2, 0))
+       
+        self:OnUpdate(0)
+    
+    end
+
+end
