@@ -3,13 +3,14 @@ if Server then
 local function SpawnWeapons(self, techPoint)
     
     local weaponTypes = { 
+            MedPack.kMapName,
+            MedPack.kMapName,
             GrenadeLauncherAmmo.kMapName,
             FlamethrowerAmmo.kMapName,
             RifleAmmo.kMapName,
             RifleAmmo.kMapName,
             ShotgunAmmo.kMapName,
             ShotgunAmmo.kMapName,
-            Pistol.kMapName, 
             Pistol.kMapName, 
             Pistol.kMapName, 
             Pistol.kMapName, 
@@ -44,6 +45,10 @@ local function SpawnWeapons(self, techPoint)
             -- give weapons a physics model so they can plop down.
             if not newEnt.physicsModel then
                 newEnt.physicsModel = Shared.CreatePhysicsModel(newEnt.physicsModelIndex, true, newEnt:GetCoords(), newEnt)
+            end
+            
+            if HasMixin(newEnt,"RifleVariant") then
+            
             end
          end    
     end
