@@ -105,13 +105,17 @@ end
     
     function NS2Gamerules:RandomlyConvertMarine()
     
-        for playerIndex, player in ipairs(self.team1:GetPlayers()) do
+        local convertables = {}
 
+        for playerIndex, player in ipairs(self.team1:GetPlayers()) do
             if HasMixin(player, "Live") and player:GetCanDie() then
-                self:TeamSwap(player, "skulk", kTeam2Index)
-//                player:Kill(nil, nil, player:GetOrigin())
-                return
+                table.insert(convertables, player)
             end
+        end
+    
+        -- swap random player to enemy team.
+        if (#convertables > 0) then
+            self:TeamSwap(convertables[math.random(#convertables)], "skulk", kTeam2Index)
         end
          
     end
@@ -121,8 +125,7 @@ end
          local marineCount = self.team1:GetNumPlayers()
          local alienCount = self.team2:GetNumPlayers()
          
-         local minimumAlienCount = 1 //+ (marineCount / 8)
-         
+         local minimumAlienCount = (marineCount >= 8) and 2 or 1          
          if ( alienCount < minimumAlienCount ) then
              self:RandomlyConvertMarine()
          end
