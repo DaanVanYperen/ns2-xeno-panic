@@ -129,6 +129,14 @@ end
          
     end
     
+    -- Force join everyone to the game.
+    function NS2Gamerules:AutojoinEveryone()
+        Shared.Message("Attempting Auto joining" )
+        for index, player in ientitylist(Shared.GetEntitiesWithClassname("Player")) do
+            Server.ClientCommand(player, "jointeamone") 
+        end
+    end
+    
     function NS2Gamerules:CheckGameStart()
     
         if (self:GetGameState() == kGameState.NotStarted) or (self:GetGameState() == kGameState.PreGame) then
@@ -140,15 +148,18 @@ end
             
                 if self:GetGameState() == kGameState.NotStarted then
                 
-                    // 10 second cooldown.
+                    -- 15 second cooldown.
                     if ( self.timeUntilStart == nil ) then
+                    
+                      -- auto join all players
                       Shared:ShotgunMessage("Game will start in 15 seconds! Join up quickly!")
                       Shared:ShotgunMessage("One of you is infected! Trust no one...")
                       self.timeUntilStart = Shared.GetTime() + 15 
                     end 
             
-                    // ready to begin!
+                    -- ready to begin!
                     if ( Shared.GetTime() >= self.timeUntilStart ) then
+                        self:AutojoinEveryone()
                         self.timeUntilStart = nil
                         self:SetGameState(kGameState.PreGame)
                         self.score = 0

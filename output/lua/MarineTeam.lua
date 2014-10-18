@@ -16,7 +16,7 @@ class 'MarineTeam' (PlayingTeam)
 
 MarineTeam.gSandboxMode = false
 
-// How often to send the "No IPs" message to the Marine team in seconds.
+// How often to send the "No IPs" message t o the Marine team in seconds.
 local kSendNoIPsMessageRate = 20
 
 local kCannotSpawnSound = PrecacheAsset("sound/NS2.fev/marine/voiceovers/commander/need_ip")
