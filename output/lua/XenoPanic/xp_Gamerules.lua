@@ -249,6 +249,30 @@ end
     
         return numPlayers
     end
+
+    -- Automatically research depending on alien strength.
+    function NS2Gamerules:AutoResearch()
+    
+        -- alien count translates in weapon strength.
+        local techIds = { kTechId.Weapons1, kTechId.Weapons2, kTechId.Weapons3,  kTechId.Armor1, kTechId.Armor2, kTechId.Armor3 }
+        local aliens  = {                3,                5,                7,               4,              5,              8 } 
+        
+        local alienCount = self.team2:GetNumPlayers()
+            
+        for i = 1, #techIds do
+            local techId = techIds[i]
+            if alienCount >= aliens[i] then
+                local techTree = self.team1:GetTechTree()
+                local researchNode = techTree:GetTechNode(techId)
+                
+                if not researchNode:GetResearched() then
+                    researchNode:SetResearched(true)
+                    self.team1:OnResearchComplete(nil, techId)
+                    techTree:SetTechChanged()
+                end
+            end
+        end
+    end
    
     function NS2Gamerules:CheckGameEnd()
     
@@ -261,16 +285,18 @@ end
         end 
     
         if self:GetGameStarted() and self.timeGameEnded == nil and not self.preventGameEnd then
-                
-            // no marines remain.
-            local noMarinesRemain = (GetNumAlivePlayers(self.team1) < 1) 
-            if noMarinesRemain then
-                Shared:ShotgunMessage("Aliens win!")
-                self:EndGame(self.team2)
-            end
             
             // game is taking too long.
             if self.timeLastGameEndCheck == nil or (Shared.GetTime() > self.timeLastGameEndCheck + kGameEndCheckInterval) then
+        
+                self:AutoResearch()
+                
+                // no marines remain.
+                local noMarinesRemain = (GetNumAlivePlayers(self.team1) < 1) 
+                if noMarinesRemain then
+                    Shared:ShotgunMessage("Aliens win!")
+                    self:EndGame(self.team2)
+                end
             
                 -- lost by lack of hive.
                 local team2Lost = self.team2:GetNumAliveCommandStructures() == 0
