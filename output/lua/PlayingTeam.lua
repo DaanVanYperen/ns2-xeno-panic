@@ -663,12 +663,17 @@ function PlayingTeam:ReplaceRespawnPlayer(player, origin, angles, mapName)
        newPlayer:ClearUpgrades()
        
        // reward whitey with upgrades.
-       if HasMixin(newPlayer, "SkulkVariant") and newPlayer:IsWhitey() then 
-          newPlayer:GiveUpgrade(kTechId.Adrenaline) 
-          newPlayer:GiveUpgrade(kTechId.Celerity) 
-          newPlayer:GiveUpgrade(kTechId.Regeneration) 
-          newPlayer:GiveUpgrade(kTechId.Carapace)
-          newPlayer:UpdateArmorAmount()   
+       if HasMixin(newPlayer, "SkulkVariant") then 
+          if newPlayer:IsWhitey()  then
+              newPlayer:GiveUpgrade(kTechId.Adrenaline) 
+              newPlayer:GiveUpgrade(kTechId.Celerity) 
+              newPlayer:GiveUpgrade(kTechId.Regeneration) 
+              newPlayer:GiveUpgrade(kTechId.Carapace)
+              newPlayer:GiveUpgrade(kTechId.Aura)
+              newPlayer:UpdateArmorAmount()   
+          else
+              newPlayer:GiveUpgrade(kTechId.Aura)
+          end
        end 
     end
     
