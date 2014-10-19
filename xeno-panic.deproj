@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
   <file>
+    <filename>output\lua\Weapons\Marine\ClipWeapon.lua</filename>
+  </file>
+  <file>
     <filename>output\lua\PanicMixin.lua</filename>
   </file>
   <file>
