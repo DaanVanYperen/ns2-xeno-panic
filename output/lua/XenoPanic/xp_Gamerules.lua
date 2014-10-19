@@ -160,7 +160,7 @@ end
             // Start game when we have /any/ players in the game.
             local playerCount = self.team1:GetNumPlayers() + self.team2:GetNumPlayers()
             
-            if (playerCount >= 3) then
+            if (playerCount >= 2) then
             
                 if self:GetGameState() == kGameState.NotStarted then
                 
