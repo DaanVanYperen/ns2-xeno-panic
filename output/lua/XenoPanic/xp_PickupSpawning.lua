@@ -91,6 +91,14 @@ end
 
 function MarineTeam:SpawnInitialStructures(techPoint)
     local tower, commandStation = PlayingTeam.SpawnInitialStructures(self, techPoint)
+    
+    -- Instance armslab. We need it!
+    local origin = commandStation:GetOrigin()
+    local right = commandStation:GetCoords().xAxis
+    local forward = commandStation:GetCoords().zAxis
+    local armslab = CreateEntity( ArmsLab.kMapName, origin+right*3.5+forward*1.5, kMarineTeamType)
+    armslab:SetConstructionComplete()
+
     return tower, commandStation
 end
 
