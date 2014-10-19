@@ -114,7 +114,8 @@ function ClipWeapon:OnInitialized()
         self:SetModel(worldModel)
     end
     
-    self.ammo = 1.5 + math.round(math.random() * ((self:GetNumStartClips() * self:GetClipSize()) - 1.5) * 0.5)
+    -- XP start all weapons with 15% ammo, up to 50%
+    self.ammo = 1 + math.round(self:GetNumStartClips() * self:GetClipSize() * 0.10) + math.round(math.random() * ((self:GetNumStartClips() * self:GetClipSize()) - 1) * 0.40)
     self.clip = 0
     self.reloading = false
     
