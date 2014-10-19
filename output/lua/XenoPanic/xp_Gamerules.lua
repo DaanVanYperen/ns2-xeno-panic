@@ -180,9 +180,9 @@ end
                         self.timeUntilStart = nil
                         self:SetGameState(kGameState.PreGame)
                         self.score = 0
-                        Shared:ShotgunMessage("Game started!")
-                        Shared:ShotgunMessage("Marines: Find weapons and ammo, survive!")
-                        Shared:ShotgunMessage("Aliens: Turn all marines.. by eating them!")                        
+                        Shared:ShotgunMessage("Game started! Marine evac will arrive in 8 minutes!")
+                        Shared:ShotgunMessage("Marines: Scavenge, Survive, Panic (B or Buy button)!")
+                        Shared:ShotgunMessage("Aliens: Hunt the marines! Fallen marines strengthen your numbers!")                        
                     end
                 end
             else
