@@ -180,6 +180,10 @@ if Client then
     
 end
 
+function ArmsLab:GetCanTakeDamageOverride()
+    return false
+end
+
 function ArmsLab:OnDestroy()
 
     ScriptActor.OnDestroy(self)
