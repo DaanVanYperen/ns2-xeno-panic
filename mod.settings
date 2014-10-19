@@ -1,24 +1,22 @@
 name        = "Xeno Panic (Alpha)"
 source_dir  = "source"
 output_dir  = "output"
-description = [=[** WIP - Does nothing as of yet **
-
-
-
-A classic Xeno outbreak scenario. You kill them, you live. They kill you, you become one of them.
-
-
-
+description = [=[A classic Xeno outbreak scenario. You kill them, you live. They kill you, you become one of them.
+ 
 You are just a simple outpost marine! You were not equipped to deal with this! Literally! They forgot to give you any weapons. Scavenge, quickly. 
 
-
-
-And if you get cornered with your pants down, press (G) to erupt in a panic!
-
-
+And if you get cornered with your pants down, press (B) to erupt in a panic!
 
 A silly game mode for all the ZPS fans out there!
 
-]=]
+v0.0.3
+* Added pickups (Grenades, Medpacks, Ammo)
+* Most powernodes break when the game starts.
+* Auto join everyone in the lobby when the game starts.
+* Bugfix: Prevent dropped weapons from despawning.
+* Bugfix: Ensure rifles always have a skin.
+* Bugfix: Select a random player as Whitey, instead of the first to join.
+* Balance: When there are 8 marines start with TWO aliens.
+* Map: More pickups in ns2_xp_descent]=]
 image       = "preview.jpg"
 publish_id = "1369bd4e"
