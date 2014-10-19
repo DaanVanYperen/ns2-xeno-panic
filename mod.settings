@@ -9,6 +9,11 @@ And if you get cornered with your pants down, press (B or buy button) to erupt i
 
 A silly game mode for all the Zombie Panic and Last Resistance fans out there!
 
+v0.0.5
+* Balance: Marine heartbeat shows at /very/ close range.
+* Balance: Marines receive weapon/armor upgrades based on alien team size.
+* Detailing: Disable unused alien buy menu.
+
 v0.0.4
 * Bugfix: Hive destruction actually wins the game for marines.
 * Fun: Alien respawn delay decreased.

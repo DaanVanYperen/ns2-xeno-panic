@@ -1,8 +1,8 @@
 kCustomLocaleMessages = {
     
 
-    MARINE_START_GAME = 'Objective: Find weapons and ammo, survive!',
-    MARINE_VICTORY = "Team Marine Wins!",
+    MARINE_START_GAME = 'Objective: Find weapons and ammo, survive for 10 minutes!',
+    MARINE_VICTORY = "Marines Survived!",
     MARINE_DEFEAT = "Team Marine loses",
 
     ALIEN_START_GAME = 'Objective: Infect all marines!',

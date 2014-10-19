@@ -5,7 +5,7 @@ if (Server) then
 
     local kEnoughAlienCheckInterval = 5
     local kGameEndCheckInterval = 0.75
-    local kXenoPanicTimeLimit = 60*20
+    local kXenoPanicTimeLimit = 60*8
     
     function NS2Gamerules:GetWhitey()
         for playerIndex, player in ipairs(self.team2:GetPlayers()) do
