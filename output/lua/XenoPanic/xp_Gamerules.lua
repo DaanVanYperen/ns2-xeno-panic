@@ -268,11 +268,14 @@ end
                 Shared:ShotgunMessage("Aliens win!")
                 self:EndGame(self.team2)
             end
-           
+            
             // game is taking too long.
             if self.timeLastGameEndCheck == nil or (Shared.GetTime() > self.timeLastGameEndCheck + kGameEndCheckInterval) then
             
-                if (self.timeSinceGameStateChanged >= kXenoPanicTimeLimit) then
+                -- lost by lack of hive.
+                local team2Lost = self.team2:GetNumAliveCommandStructures() == 0
+            
+                if (self.timeSinceGameStateChanged >= kXenoPanicTimeLimit) or team2Lost then
                     Shared:ShotgunMessage("Marines survived!")
                     self:EndGame(self.team1)
                 end
