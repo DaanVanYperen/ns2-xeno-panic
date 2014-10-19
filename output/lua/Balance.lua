@@ -459,9 +459,12 @@ kWhipBombardROF = 6
 // SPAWN TIMES
 kMarineRespawnTime = 9
 
-kAlienSpawnTime = 10
-kEggGenerationRate = 13
-kAlienEggsPerHive = 3
+-- XP START
+-- Prevent easy egglock by decreasing egg  generation rate and providing more eggs per hive.
+kAlienSpawnTime = 7
+kEggGenerationRate = 8
+kAlienEggsPerHive = 8
+-- XP END
 
 // BUILD/RESEARCH TIMES
 kRecycleTime = 12
