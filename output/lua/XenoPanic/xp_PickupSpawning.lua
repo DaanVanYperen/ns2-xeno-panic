@@ -119,6 +119,7 @@ end
 
 function Weapon:Dropped(prevOwner)
     
+    if prevOwner ~= nil then
     local slot = self:GetHUDSlot()
 
     self.prevOwnerId = prevOwner:GetId()
@@ -145,6 +146,7 @@ function Weapon:Dropped(prevOwner)
         self.physicsModel:AddImpulse(self:GetOrigin(), (viewCoords.zAxis * impulse))
         self.physicsModel:SetAngularVelocity(Vector(5,0,0))
         
+    end
     end
     
 end
