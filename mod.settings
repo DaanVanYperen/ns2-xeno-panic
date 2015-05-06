@@ -1,0 +1,34 @@
+name        = "Xeno Panic (Alpha)"
+source_dir  = "source"
+output_dir  = "output"
+description = [=[A classic Xeno outbreak scenario. You kill them, you live. They kill you, you become one of them.
+ 
+You are just a simple outpost marine! You were not equipped to deal with this! Literally! They forgot to give you any weapons. Scavenge, quickly. 
+
+And if you get cornered with your pants down, press (B or buy button) to erupt in a panic!
+
+A silly game mode for all the Zombie Panic and Last Resistance fans out there!
+
+v0.0.5
+* Balance: Marine heartbeat shows at /very/ close range.
+* Balance: Marines receive weapon/armor upgrades based on alien team size.
+* Detailing: Disable unused alien buy menu.
+
+v0.0.4
+* Bugfix: Hive destruction actually wins the game for marines.
+* Fun: Alien respawn delay decreased.
+* Balance: Make hive stronger to discourage early hive assaults.
+* Balance: Hives spawn more eggs, with less delay.
+* Balance: Panic speed while panicked boosted to +3.
+
+v0.0.3
+* Added pickups (Grenades, Medpacks, Ammo)
+* Most powernodes break when the game starts.
+* Auto join everyone in the lobby when the game starts.
+* Bugfix: Prevent dropped weapons from despawning.
+* Bugfix: Ensure rifles always have a skin.
+* Bugfix: Select a random player as Whitey, instead of the first to join.
+* Balance: When there are 8 marines start with TWO aliens.
+* Map: More pickups in ns2_xp_descent]=]
+image       = "preview.jpg"
+publish_id = "1369bd4e"

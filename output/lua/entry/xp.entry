@@ -1,0 +1,7 @@
+modEntry = [[
+    Client: lua/XenoPanic/xp_Client.lua,
+    Server: lua/XenoPanic/xp_Server.lua,
+    Predict: lua/XenoPanic/xp_Predict.lua,
+    Shared: lua/XenoPanic/xp_Shared.lua,
+    Priority: 3
+]]
